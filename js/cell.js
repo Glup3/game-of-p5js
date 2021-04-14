@@ -1,10 +1,9 @@
-function Cell(x, y, w, h) {
+function Cell(x, y, w, h, d) {
   this.x = x;
   this.y = y;
   this.w = w;
   this.h = h;
-
-  this.isDead = true;
+  this.isDead = d;
 
   this.draw = function () {
     if (this.isDead) {
