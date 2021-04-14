@@ -21,6 +21,13 @@ function Cell(x, y, w, h, d) {
       this.draw();
     }
   };
+
+  this.dragged = function (isDrawing) {
+    if (isInArea(this.x, this.y, mouseX, mouseY, this.w, this.h)) {
+      this.isDead = isDrawing ? false : true;
+      this.draw();
+    }
+  };
 }
 
 function isInArea(x, y, mX, mY, width, height) {

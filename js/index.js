@@ -6,6 +6,7 @@ const width = 30;
 const height = 30;
 
 let game;
+let penType = 'draw';
 
 function nextGeneration() {
   const nextGen = new Map();
@@ -29,9 +30,15 @@ function nextGeneration() {
   }
 }
 
-function mouseClicked() {
+function mousePressed() {
   for (let i = 0; i < game.grid.length; i++) {
     game.grid[i].clicked();
+  }
+}
+
+function mouseDragged() {
+  for (let i = 0; i < game.grid.length; i++) {
+    game.grid[i].dragged(penType === 'draw');
   }
 }
 
@@ -41,10 +48,14 @@ function setupDOM() {
   const startBtn = select('#startBtn');
   const stopBtn = select('#stopBtn');
   const nextBtn = select('#nextBtn');
+  const penTypeSelect = select('#penTypeSelect');
 
   startBtn.mousePressed(() => loop());
   stopBtn.mousePressed(() => noLoop());
   nextBtn.mousePressed(() => redraw());
+  penTypeSelect.changed(() => {
+    penType = penTypeSelect.value();
+  });
 }
 
 function setup() {
