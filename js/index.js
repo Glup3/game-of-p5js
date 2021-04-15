@@ -32,13 +32,13 @@ function nextGeneration() {
 
 function mousePressed() {
   for (let i = 0; i < game.grid.length; i++) {
-    game.grid[i].clicked();
+    game.grid[i].clicked(mouseX, mouseY);
   }
 }
 
 function mouseDragged() {
   for (let i = 0; i < game.grid.length; i++) {
-    game.grid[i].dragged(penType === 'draw');
+    game.grid[i].dragged(penType === 'draw', mouseX, mouseY);
   }
 }
 
@@ -61,7 +61,6 @@ function setupDOM() {
 function setup() {
   setupDOM();
   game = new Game(cols, rows, width, height);
-  game.init();
 
   game.draw();
   frameRate(5);

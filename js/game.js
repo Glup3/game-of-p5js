@@ -1,11 +1,15 @@
-function Game(cols, rows, cellW, cellH) {
-  this.cols = cols;
-  this.rows = rows;
-  this.cellW = cellW;
-  this.cellH = cellH;
-  this.grid = [];
+class Game {
+  constructor(cols, rows, cellW, cellH) {
+    this.cols = cols;
+    this.rows = rows;
+    this.cellW = cellW;
+    this.cellH = cellH;
+    this.grid = [];
 
-  this.init = function () {
+    this.init();
+  }
+
+  init() {
     this.grid = [];
 
     for (let y = 0; y < this.rows; y++) {
@@ -13,15 +17,15 @@ function Game(cols, rows, cellW, cellH) {
         this.grid.push(new Cell(x * this.cellW, y * this.cellH, this.cellW, this.cellH, true));
       }
     }
-  };
+  }
 
-  this.draw = function () {
+  draw() {
     for (let i = 0; i < this.rows * this.cols; i++) {
       this.grid[i].draw();
     }
-  };
+  }
 
-  this.getLivingNeighboursCount = function (pos) {
+  getLivingNeighboursCount(pos) {
     let neighbours = 0;
 
     const north = pos - this.cols;
@@ -56,5 +60,5 @@ function Game(cols, rows, cellW, cellH) {
     }
 
     return neighbours;
-  };
+  }
 }
